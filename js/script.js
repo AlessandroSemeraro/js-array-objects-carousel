@@ -26,30 +26,53 @@ const images = [
 console.log(images);
 
 let myContainer=document.querySelector('div.container-img');
-let activeIndex = 0;
 
+let activeIndex = 0;
 
 //effettuo un for each per array di oggetti//
 images.forEach((element,index) => {
 if (index == activeIndex){
-myContainer.innerHTML += mySlidesGen(index, element.image,element.title,element.description,"active");
+myContainer.innerHTML += mySlidesGen(index, element.image,element.title,element.text,'active');
 } else if (index !== activeIndex) {
-myContainer.innerHTML += mySlidesGen(index, element.image,element.title,element.description,'');
+myContainer.innerHTML += mySlidesGen(index, element.image,element.title,element.text,'');
 }
 })
 
+document.querySelector('#up-arr').addEventListener('click', function(){
+    activeIndex--
+    if (activeIndex < 0){
+        activeIndex = images.length - 1;
+    } 
+    slideChange(activeIndex)
+})
 
+document.querySelector('#down-arr').addEventListener('click', function(){
+    if (++activeIndex >= images.length){
+        activeIndex =  0;
+    }
+    slideChange(activeIndex)
+})
 
 
 //FUNCTIONS
 
 //creo funzione che mi genera una slide//
-function mySlidesGen(index,image, title ,description){
-return `<div class="imageUp" img-index="${index}">
+function mySlidesGen(index,image, title ,text,classesToAdd){
+return `<div class="imageUp ${classesToAdd}" img-index="${index}">
     <img src="${image}" alt="pic">
     <div class="description">
         <h2>${title}</h2>
-        <p>${description}</p>
+        <p>${text}</p>
     </div>
 </div>` 
+}
+
+function slideChange(newIndex){
+    //tolgo active da elemento con active Up//
+    document.querySelector('div.imageUp.active').classList.remove('active');
+
+   
+    //aggiungo active a nuovo elemento//
+    document.querySelector('div.container-img div.imageUp:nth-child('+ (newIndex +1)+')').classList.add('active');
+    
 }

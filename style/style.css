@@ -14,6 +14,7 @@ main div.container{
     width: 1000px;
     height: 550px;
     border: 1px solid black;
+    position: relative;
 }
 main div.container div.container-img{
     width: 700px;
@@ -36,8 +37,9 @@ img{
 
 div.description{
     position: absolute;
-    top: 8rem;
-    color: antiquewhite;
+    top: 2rem;
+    color: rgb(255, 0, 0);
+    width: 600px;
 }
 
 div.imageUp{
@@ -48,3 +50,24 @@ div.imageUp.active{
     display: block;
 }
 
+button{
+    background-color: blue;
+    color: white;
+    padding: 0.4rem;
+    border: none;
+    border-radius: 1rem;
+}
+
+#up-arr{
+    position: absolute;
+    z-index: 1;
+    left: 350px;
+    top: 5px;
+}
+
+#down-arr{
+   position: absolute;
+   z-index: 1;
+   left: 350px;
+   bottom: 10px;
+}
