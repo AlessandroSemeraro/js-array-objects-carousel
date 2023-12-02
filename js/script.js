@@ -1,5 +1,6 @@
 const images = [
     {
+
         image: 'img/01.webp',
         title: 'Marvel\'s Spiderman Miles Morale',
         text: 'Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.',
@@ -22,9 +23,33 @@ const images = [
     }
 ];
 
-let firstImage = document.createElement('img');
-firstImage.appendChild('wrapper');
+console.log(images);
 
-for (let i=0 ; i <= images.length; i++){
+let myContainer=document.querySelector('div.container-img');
+let activeIndex = 0;
 
+
+//effettuo un for each per array di oggetti//
+images.forEach((element,index) => {
+if (index == activeIndex){
+myContainer.innerHTML += mySlidesGen(index, element.image,element.title,element.description,"active");
+} else if (index !== activeIndex) {
+myContainer.innerHTML += mySlidesGen(index, element.image,element.title,element.description,'');
+}
+})
+
+
+
+
+//FUNCTIONS
+
+//creo funzione che mi genera una slide//
+function mySlidesGen(index,image, title ,description){
+return `<div class="imageUp" img-index="${index}">
+    <img src="${image}" alt="pic">
+    <div class="description">
+        <h2>${title}</h2>
+        <p>${description}</p>
+    </div>
+</div>` 
 }
